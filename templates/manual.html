@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFSP — Manual de Instruções</title>
+    <meta name="description"
+        content="Manual de instruções do Sistema de Manutenção de TI do IFSP. Aprenda a identificar e descrever problemas técnicos para um atendimento mais ágil.">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <link rel="icon" type="image/png" href="/static/img/favicon.png">
+</head>
+
+<body>
+
+    <!-- ==========================================
+     MAIN LAYOUT
+     ========================================== -->
+    <div class="page-wrapper">
+        <div class="container my-4 my-md-5 max-w-custom">
+
+            <!-- CARD PRINCIPAL com animação de entrada -->
+            <div class="card main-card fade-in-up">
+
+                <!-- CABEÇALHO -->
+                <div class="card-header d-flex justify-content-between align-items-center py-3">
+
+                    <div style="flex: 1;">
+                        <img src="/static/img/logo.png" alt="Logo IFSP" class="logo-cabecalho shadow-sm">
+                    </div>
+
+                    <div style="flex: 2;" class="text-center">
+                        <h1 class="mb-0 text-white fw-bolder titulo-destaque">Manual de Instruções</h1>
+                    </div>
+
+                    <div style="flex: 1;" class="d-flex align-items-center justify-content-end gap-2">
+                        <button class="btn-header-action" id="btn-tema" title="Mudar Tema"
+                            aria-label="Alternar tema claro/escuro">
+                            <i class="bi bi-moon-fill" id="icone-tema"></i>
+                        </button>
+                        <a href="/" class="btn-header-action" aria-label="Voltar para o formulário">
+                            <i class="bi bi-arrow-left"></i><span class="d-none d-sm-inline">Voltar</span>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- CORPO DO MANUAL -->
+                <div class="card-body px-3 px-md-5 py-4 py-md-5">
+
+                    <!-- Introdução -->
+                    <div class="text-center mb-5 fade-in-up delay-1">
+                        <div class="manual-hero-icon mb-3">
+                            <i class="bi bi-info-circle-fill"></i>
+                        </div>
+                        <h2 class="section-hero-title">Como utilizar o suporte técnico</h2>
+                        <p class="section-hero-subtitle">Este guia rápido ajudará você a classificar e descrever seu
+                            problema da melhor forma, agilizando o atendimento pela equipe de TI do IFSP.</p>
+                    </div>
+
+                    <!-- SEÇÃO 1: PATRIMÔNIO -->
+                    <div class="section-block fade-in-up delay-1">
+                        <h2 class="section-title">
+                            <span class="section-icon"><i class="bi bi-upc-scan"></i></span>
+                            <span>1. Identificação de Patrimônio e Local</span>
+                        </h2>
+                        <p class="section-body-text">Todo equipamento do IFSP possui uma <strong>plaqueta
+                                metálica</strong> com um código numérico. É <strong>obrigatório</strong> informar o
+                            laboratório e este número.</p>
+
+                        <ul class="manual-checklist mb-4">
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Se o problema for <strong>apenas no monitor</strong>, informe o patrimônio da
+                                    tela.</span>
+                            </li>
+                            <li>
+                                <i class="bi bi-check-circle-fill"></i>
+                                <span>Se for <strong>na CPU ou na rede</strong>, informe o do PC.</span>
+                            </li>
+                        </ul>
+
+                        <div class="info-alert info-alert--warning">
+                            <i class="bi bi-exclamation-triangle-fill info-alert__icon"></i>
+                            <div>Se a plaqueta estiver ilegível, totalmente apagada ou o equipamento não a possuir,
+                                preencha os campos com <strong>"000000"</strong> e explique a localização exata no campo
+                                de descrição.</div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO 2: CATEGORIAS -->
+                    <div class="section-block fade-in-up delay-2">
+                        <h2 class="section-title">
+                            <span class="section-icon"><i class="bi bi-tags-fill"></i></span>
+                            <span>2. Qual Categoria Escolher?</span>
+                        </h2>
+
+                        <div class="row g-4 mt-1">
+                            <div class="col-md-4">
+                                <div class="manual-category-card">
+                                    <div class="manual-cat-icon manual-cat-icon--hardware">
+                                        <i class="bi bi-pc-display-horizontal"></i>
+                                    </div>
+                                    <h3 class="manual-cat-title">Hardware</h3>
+                                    <p class="manual-cat-desc">Equipamentos físicos danificados (ex: mouse não clica,
+                                        monitor não liga, cabo solto).</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="manual-category-card">
+                                    <div class="manual-cat-icon manual-cat-icon--software">
+                                        <i class="bi bi-window-stack"></i>
+                                    </div>
+                                    <h3 class="manual-cat-title">Software</h3>
+                                    <p class="manual-cat-desc">Falhas virtuais ou de rede (ex: AutoCAD não abre, Wi-Fi
+                                        bloqueado, erro de login).</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="manual-category-card">
+                                    <div class="manual-cat-icon manual-cat-icon--outros">
+                                        <i class="bi bi-tools"></i>
+                                    </div>
+                                    <h3 class="manual-cat-title">Outros</h3>
+                                    <p class="manual-cat-desc">Problemas de infraestrutura (ex: tomada sem energia,
+                                        cheiro de queimado).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO 3: BOA DESCRIÇÃO -->
+                    <div class="section-block fade-in-up delay-3">
+                        <h2 class="section-title">
+                            <span class="section-icon"><i class="bi bi-chat-text-fill"></i></span>
+                            <span>3. Como escrever uma boa descrição?</span>
+                        </h2>
+                        <p class="section-body-text">Quanto mais específico você for, mais rápido o chamado será
+                            solucionado.</p>
+
+                        <div class="row g-3 mt-1">
+                            <div class="col-md-6">
+                                <div class="manual-example-card manual-example-card--bad">
+                                    <span class="manual-example-badge manual-example-badge--bad">
+                                        <i class="bi bi-hand-thumbs-down-fill me-1"></i>Evite
+                                    </span>
+                                    <p class="manual-example-text">"O computador quebrou, venham arrumar logo."</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="manual-example-card manual-example-card--good">
+                                    <span class="manual-example-badge manual-example-badge--good">
+                                        <i class="bi bi-hand-thumbs-up-fill me-1"></i>Ideal
+                                    </span>
+                                    <p class="manual-example-text">"O PC da fileira do meio liga normalmente, mas
+                                        desliga sozinho após uns 10 minutos de uso."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /card-body -->
+            </div><!-- /main-card -->
+
+            <!-- Footer -->
+            <p class="text-center mt-3 footer-text fade-in-up delay-4">
+                <i class="bi bi-shield-check me-1"></i>Sistema Interno IFSP &mdash; Manutenção de TI
+            </p>
+
+        </div><!-- /container -->
+    </div><!-- /page-wrapper -->
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/script.js"></script>
+
+</body>
+
+</html>

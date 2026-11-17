@@ -1,0 +1,62 @@
+CREATE DATABASE IF NOT EXISTS manutencao_ifsp;
+USE manutencao_ifsp;
+
+-- 1. Criar as categorias primeiro (não dependem de nenhuma tabela)
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- 2. Criar subcategorias (dependem das categorias)
+CREATE TABLE subcategorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    categoria_id INT NOT NULL,
+    nome VARCHAR(50) NOT NULL,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+);
+
+-- 3. Criar a tabela de Chamados (depende das subcategorias)
+CREATE TABLE Chamado (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    prontuario VARCHAR(20) NOT NULL,
+    nome_usuario VARCHAR(100) NOT NULL,
+    subcategoria_id INT NOT NULL,
+    patrimonio_pc VARCHAR(50) DEFAULT NULL,
+    patrimonio_tela VARCHAR(50) DEFAULT NULL,
+    descricao TEXT NOT NULL,
+		status ENUM('Pendente', 'Em Atendimento', 'Resolvido') DEFAULT 'Pendente',
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    data_resolucao TIMESTAMP NULL DEFAULT NULL,
+    FOREIGN KEY (subcategoria_id) REFERENCES subcategorias(id)
+);
+
+-- 4. Inserção de Dados Fixos (População inicial)
+INSERT INTO categorias (nome) VALUES ('Hardware'), ('Software'), ('Outros');
+
+INSERT INTO subcategorias (categoria_id, nome) VALUES (1, 'Monitor'), (1, 'Teclado'), (1, 'Mouse'), (1, 'PC'), (1, 'Cabeamento');
+
+INSERT INTO subcategorias (categoria_id, nome) VALUES (2, 'Aplicativos'), (2, 'Redes / Wi-Fi');
+
+INSERT INTO subcategorias (categoria_id, nome) VALUES (3, 'Não Especificado');
+
+
+-- 5. Criação de TRIGGERs
+
+DELIMITER //
+
+CREATE TRIGGER trg_atualiza_data_resolucao
+BEFORE UPDATE ON Chamado
+FOR EACH ROW
+BEGIN
+    -- Verifica se o status está mudando para 'Resolvido'
+    IF NEW.status = 'Resolvido' AND OLD.status != 'Resolvido' THEN
+        SET NEW.data_resolucao = CURRENT_TIMESTAMP;
+        
+    -- BÔNUS DE ENGENHARIA: E se o técnico marcou como resolvido sem querer e reabrir o chamado?
+    -- Se o status deixar de ser 'Resolvido', limpamos a data de resolução para não corromper métricas.
+    ELSEIF NEW.status != 'Resolvido' AND OLD.status = 'Resolvido' THEN
+        SET NEW.data_resolucao = NULL;
+    END IF;
+END //
+
+DELIMITER ;

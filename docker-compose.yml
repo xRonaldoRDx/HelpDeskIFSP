@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - "80:5000" # Mapeia a porta 80 do servidor da faculdade para a 5000 do container
+    volumes:
+      - ./database:/app/database # Persiste os dados do banco na pasta database local
